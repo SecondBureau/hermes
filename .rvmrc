@@ -1,10 +1,23 @@
 #!/usr/bin/env bash
 
+if [ -e ".environment" ]
+then
+  source .environment
+fi
+
+# set Gemset in a ".environment" file
+# export gemset=YOUR_GEMSET_NAME
+
+if [ "$gemset" = "" ]
+then
+  gemset=${PWD##*/}
+fi
+
 # This is an RVM Project .rvmrc file, used to automatically load the ruby
 # development environment upon cd'ing into the directory
 
 # First we specify our desired <ruby>[@<gemset>], the @gemset name is optional.
-environment_id="ruby-1.9.2-p290@Hermes"
+environment_id="ruby-1.9.2-p290@$gemset"
 
 #
 # Uncomment following line if you want options to be set only for given project.
@@ -51,3 +64,5 @@ fi
 # then
 #   bundle
 # fi
+
+
