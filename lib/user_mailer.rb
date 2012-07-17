@@ -10,19 +10,19 @@ require 'uuid'
 
 
 class UserMailer < ActionMailer::Base
-  
+
     default :from => "Expediteur <notifications@example.com>"
 
-   def newsletter(user, tid)
+   def newsletter(user, template)
       @user = user
-      @url  = "http://example.com/login"
+      @path_root  = "http://#{$domain}/images/#{template.id}/"
       user.token = UUID.new.generate(:compact)
-      puts user.token
-      if mail(:to => user.email, :subject => "Your Newsletter")
+      @logo_url = "#{$domain}/api/u/#{user.id}/#{template.id}/#{user.token}.jpg"
+      if mail(:to => user.email, :subject => template.title)
         user.sent_at = Time.now
         user.updated_at = Time.now
         user.save!
       end
-      
+
    end
 end

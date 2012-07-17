@@ -57,7 +57,7 @@ module Hermes
        css :application, [ 'css/style.css' ]
 
      }
-     
+
     helpers do
 
       def link_to(url,text=url,opts={})
@@ -67,7 +67,7 @@ module Hermes
       end
 
     end
-    
+
     get '/check/if/app/is/alive' do
       'alive'
     end
@@ -81,9 +81,9 @@ module Hermes
       content_type 'text/plain'
       "User-Agent: * \nDisallow: "
     end
-    
-    get %r{^/api/u/([0-9]{1,5}?)/([0-9a-z]{32}).jpg} do
-      user_id, token = params[:captures] 
+
+    get %r{^/api/u/([0-9]{1,5}?)/([0-9]{1})/([0-9a-z]{32}).jpg} do
+      user_id, newsletter_id, token = params[:captures]
       user = User.get(user_id)
       if token.eql?(user.token)
         user.last_read_at = Time.now
@@ -92,10 +92,10 @@ module Hermes
         user.save!
       end
       # send_file fails on heroku
-      send_file File.join(settings.root, 'assets/images/b5a9817928194a32ca4c917e63640d7a.jpg')
-    end 
+      send_file File.join(settings.root, 'assets/images/1/logo.jpg')
+    end
 
-   
+
   end
 end
 
