@@ -15,6 +15,7 @@ class UserMailer < ActionMailer::Base
 
    def newsletter(user, template)
       @user = user
+      @template = template
       @path_root  = "http://#{$domain}/images/#{template.id}/"
       user.token = UUID.new.generate(:compact)
       @logo_url = "#{$domain}/api/u/#{user.id}/#{template.id}/#{user.token}.jpg"
