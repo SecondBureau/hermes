@@ -11,7 +11,7 @@ require 'uuid'
 
 class UserMailer < ActionMailer::Base
 
-    default :from => "Expediteur <notifications@example.com>"
+    default :from => "ACAPITAL <chinaoutbound@acapital.hk>"
 
    def newsletter(user, template)
       @user = user

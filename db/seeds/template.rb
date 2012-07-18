@@ -4,3 +4,10 @@ Template.create!(
   :sender => 'ACAPITAL <chinaoutbound@acapital.hk>',
   :created_at => Time.now,
   :updated_at => Time.now)
+  
+Template.create!(
+  :title => 'A CAPITAL和耀莱向BANG & OLUFSEN投资2500万欧元',
+  :sender => 'ACAPITAL <chinaoutbound@acapital.hk>',
+  :created_at => Time.now,
+  :updated_at => Time.now)
+
