@@ -85,14 +85,14 @@ module Hermes
     get %r{^/api/u/([0-9]{1,5}?)/([0-9]{1})/([0-9a-z]{32}).jpg} do
       user_id, newsletter_id, token = params[:captures]
       user = User.get(user_id)
-      if token.eql?(user.token)
+      if user && token.eql?(user.token)
         user.last_read_at = Time.now
         user.read_count += 1
         user.updated_at = Time.now
         user.save!
       end
       # send_file fails on heroku
-      send_file File.join(settings.root, 'assets/images/1/logo.jpg')
+      send_file File.join(settings.root, "assets/images/#{newsletter_id}/logo.jpg"), :type => 'image/jpeg', :disposition => 'inline'
     end
 
 
